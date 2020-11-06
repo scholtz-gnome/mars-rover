@@ -1,20 +1,20 @@
 # Mars Rover Challenge
 
 ## Running Mars Rover
-The only package required in this challenge is Jest for automated unit testing. After cloning this repo, run `npm install`. This will install Jest. Inside package.json, we are using `jest --watch index.test.js`, such that running `npm test` will run the tests found in `src/index.test.js` will watch for any changes and run the test afresh. Inside `src/index.test.js`, we have 3 simple unit tests. The first two check `roverMove()` against the two tests provided in the [challenge](https://code.google.com/archive/p/marsrovertechchallenge/). The third test checks whether Rover will return some error if it is given an instruction to move beyond the scope of the plateau.
+The only package required in this challenge is Jest for automated unit testing. After cloning this repo, run `npm install`. This will install Jest.
+
+Inside package.json, we are using `jest --watch index.test.js`, such that running `npm test` will run the tests found in `src/index.test.js` afresh after the code is changed. Inside `src/index.test.js`, we have 4 unit tests. Two tests check `roverMove()` against the two tests provided in the [challenge](https://code.google.com/archive/p/marsrovertechchallenge/). The others check that the function works with only one rover passed to it and that an error is returned if the instructions move a rover too far.
 
 ## Assumptions About The Challenge
-I assume the coordinates for each rover and its respective instructions will be given as an array.
+I assume the coordinates for each rover and its respective instructions will be given as an array with two elements.
 
 ## Code Explained
-The challenge is solved with a single function, `roverMove()`. This function expects 3 arguments:
+The challenge is solved with a single function, `roverMove()`. This function expects 2 arguments:
 
-1.) A string of characters representing the x and y coordinates of the rovers position, and a letter representing a cardinal point, e.g., ("2 1 E"). This means Rover is at coordinates 2 on the x-axis, 1 on the y-axis and currently facing East.
+1.) A string of characters representing the coordinates for the grid block in the top right of the plateau. The grid block in the bottom left is assumed to be "0 0".
 
-2.) A string of characters representing the instructions received from NASA. These will either give a command to turn 90 degrees to the left or right, or a command to move one grid space in the direction Rover is currently facing.
+2.) An array (or multiple arrays) with two elements, representing the rover. The first element in the array is a string of characters representing the current position of the rover. The second element in the array is a string of characters representing the instructions given to the rover.
 
-3.) A string of characters representing the coordinates for the grid block in the top right of the plateau. The grid block in the bottom left is assumed to be "0 0".
+The function is quite simple, although the control flow within the second `forEach()` method is somewhat complex. The first `forEach()` method loops through all rovers passed in as an array to the function. The second `forEach()` loops through each instruction given to a specific rover.
 
-The function is quite simple, although the control flow within the `forEach()` method is somewhat complex. After transforming the inputs into arrays, we then assign the values of the first input (the Rover's current position coordinates) to variables `x`, `y` and `point`. We then loop through each letter (insruction) in the instructions array and reassign the values of the `x`, `y` and `point` variables where necessary. 
-
-After going through each instruction, we make one final check. 
+The control flow within the second `forEach()` method reassigns the values of the rover's position (whether that be its x/y coordinates or the direction its facing), while checking this against the size of the plateau. If an instruction takes the rover past the bounds of the plateau, an error message is returned.
