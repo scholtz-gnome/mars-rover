@@ -7,7 +7,7 @@ exports.roverMove = (plateau, ...rovers) => {
   let allRovers = [];
 
   rovers.forEach(rover => {
-    
+
     let position = rover[0].split(" ");
     const instructions = rover[1].split("");
 
@@ -17,67 +17,52 @@ exports.roverMove = (plateau, ...rovers) => {
 
     instructions.forEach(instruction => {
 
-      if (x > gridX || y > gridY || x < 0 || y < 0) {
-        allRovers.push("This rover can't move there");
-      } else {
-        if (instruction !== "M") {
-          if (instruction === "R") {
-            if (direction === "N") {
-              direction = "E";
-            } else if (direction === "E") {
-              direction = "S";
-            } else if (direction === "S") {
-              direction = "W";
-            } else if (direction === "W") {
-              direction = "N";
-            }
-          } else if (instruction === "L") {
-            if (direction === "N") {
-              direction = "W";
-            } else if (direction === "E") {
-              direction = "N";
-            } else if (direction === "S") {
-              direction = "E";
-            } else if (direction === "W") {
-              direction = "S";
-            }
-          }
+      if (instruction === "R") {
+        if (direction === "N") {
+          direction = "E";
+        } else if (direction === "E") {
+          direction = "S";
+        } else if (direction === "S") {
+          direction = "W";
+        } else if (direction === "W") {
+          direction = "N";
+        }
+      } else if (instruction === "L") {
+        if (direction === "N") {
+          direction = "W";
+        } else if (direction === "E") {
+          direction = "N";
+        } else if (direction === "S") {
+          direction = "E";
+        } else if (direction === "W") {
+          direction = "S";
+        }
+      }
+
+      if (instruction === "M") {
+        let newX = x;
+        let newY = y;
+
+        if (direction === "N") {
+          newY += 1;
+        } else if (direction === "E") {
+          newX += 1;
+        } else if (direction === "S") {
+          newY -= 1;
+        } else if (direction === "W") {
+          newX -= 1;
+        }
+        if (newX > gridX || newY > gridY || newX < 0 || newY < 0) {
+          allRovers.push("This rover can't move there");
         } else {
-          if (direction === "N") {
-            if (x > gridX || y > gridY || x < 0 || y < 0) {
-              allRovers.push("This rover can't move there");
-            } else {
-              y = y + 1;
-            }
-          } else if (direction === "E") {
-            if (x > gridX || y > gridY || x < 0 || y < 0) {
-              allRovers.push("This rover can't move there");
-            } else {
-              x = x + 1;
-            }
-          } else if (direction === "S") {
-            if (x > gridX || y > gridY || x < 0 || y < 0) {
-              allRovers.push("This rover can't move there");
-            } else {
-              y = y - 1;
-            }
-          } else if (direction === "W") {
-            if (x > gridX || y > gridY || x < 0 || y < 0) {
-              allRovers.push("This rover can't move there");
-            } else {
-              x = x - 1;
-            }
-          }
+          x = newX;
+          y = newY;
         }
       }
     });
-    if (x > gridX || y > gridY || x < 0 || y < 0) {
-      allRovers.push("This rover can't move there");
-    } else {
-      allRovers.push(`${x} ${y} ${direction}`);
-    }
+    allRovers.push(`${x} ${y} ${direction}`);
   });
-  
+
   return allRovers.join(" | ");
 
 }
