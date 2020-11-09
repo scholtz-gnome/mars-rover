@@ -2,7 +2,7 @@
 A group of rovers are being deployed on the surface of Mars by NASA. Given the extent of the plateau and a set of instructions, these rovers will scan the surrounding landscape for any form of life. What will they find?
 
 ## Setting Up Mars Rover
-The packages required in this challenge are `"jest"` and `"prompt-sync"`. After cloning this repo, run `npm install` to install the required modules.
+This challenge was completed using JavaScript in Node.js. The packages required in this challenge are `"jest"` and `"prompt-sync"`. After cloning this repo, run `npm install` to install the required modules.
 
 The code is found in the `src/` directory. The solution is found in `index.js`. `app.js` contains the terminal interface and `index.test.js` contains the automated unit tests for `index.js`.
 
