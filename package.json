@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watch index.test.js"
+    "test": "jest --watch index.test.js",
+    "start": "node src/app"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/scholtz-gnome/mars-rover#readme",
   "dependencies": {
-    "jest": "^26.6.3"
+    "jest": "^26.6.3",
+    "prompt-sync": "^4.2.0"
   }
 }
