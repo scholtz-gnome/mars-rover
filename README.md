@@ -30,8 +30,9 @@ Mission accomplished, commander!
 To run the automated unit tests, run `npm test` in the terminal. Inside `src/index.test.js`, we have 7 unit tests and a commented-out test should you want to run your own. The first test checks the `roverMove()` function with the example given in the [challenge](https://code.google.com/archive/p/marsrovertechchallenge/). The others check the basic operations of `roverMove()`.
 
 ## Assumptions About The Challenge
-I assume the coordinates for each rover and its respective instructions will be given as an array with two elements.
-I assume the top-right plateau coordinates are provided in order to limit the extent of the rovers.
+1. I assume the coordinates for each rover and its respective instructions will be given as an array with two elements.
+
+2. I assume the top-right plateau coordinates are provided in order to limit the extent of the rovers.
 
 ## Code Explained
 The challenge is solved with a single function, `roverMove()`. This function expects 2 arguments:
