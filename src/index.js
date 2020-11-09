@@ -1,13 +1,11 @@
-exports.roverMove = (plateau, ...rovers) => {
-
+const roverMove = (plateau, ...rovers) => {
   const plateauArray = plateau.split(" ");
   const gridX = Number(plateauArray[0]);
   const gridY = Number(plateauArray[1]);
 
-  let allRovers = [];
+  let roverResults = [];
 
-  rovers.forEach(rover => {
-
+  rovers.forEach((rover, i) => {
     let position = rover[0].split(" ");
     const instructions = rover[1].split("");
 
@@ -16,7 +14,6 @@ exports.roverMove = (plateau, ...rovers) => {
     let direction = position[2];
 
     instructions.forEach(instruction => {
-
       if (instruction === "R") {
         if (direction === "N") {
           direction = "E";
@@ -53,16 +50,20 @@ exports.roverMove = (plateau, ...rovers) => {
           newX -= 1;
         }
         if (newX > gridX || newY > gridY || newX < 0 || newY < 0) {
-          allRovers.push("This rover can't move there");
+          console.info(`Rover ${i + 1} can't move to coordinates (x: ${newX} y: ${newY})`);
         } else {
           x = newX;
           y = newY;
         }
       }
     });
-    allRovers.push(`${x} ${y} ${direction}`);
+    roverResults.push(`Rover ${i + 1}: ${x} ${y} ${direction}`);
   });
 
-  return allRovers.join(" | ");
+  return roverResults.join(" || ");
 
+}
+
+module.exports = {
+  roverMove
 }
